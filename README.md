@@ -6,7 +6,7 @@ A full-stack social media platform built with modern technologies:
 - ⚛️ [React](https://reactjs.org/) — UI library for building interactive interfaces
 - 🧠 [TypeScript](https://www.typescriptlang.org/) — typed superset of JavaScript
 - 💨 [Tailwind CSS](https://tailwindcss.com/) — utility-first CSS framework
-- 🛠️ [Supabase](https://supabase.com/) — open source Firebase alternative (Auth, DB, Storage)
+- 🛠️ [Supabase (with PostgreSQL)](https://supabase.com/) — open source Firebase alternative (Auth, DB, Storage)
 
 ---
 
@@ -19,8 +19,3 @@ A full-stack social media platform built with modern technologies:
 - 🌙 Dark mode (optional)
 - 📱 Fully responsive UI
 - 🔔 Real-time updates with Supabase subscriptions
-
----
-
-## 📁 Project Structure
-

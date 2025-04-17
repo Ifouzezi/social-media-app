@@ -8,7 +8,7 @@ export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { signInWithGitHub, signOut, user} = useAuth();
 
-//   const displayName = user?.user_metadata.user_name || user?.email;
+  const displayName = user?.user_metadata.user_name || user?.email;
   return (
     <nav className="fixed top-0 w-full z-40 bg-[rgba(10,10,10,0.8)] backdrop-blur-lg border-b border-white/10 shadow-lg">
       <div className="max-w-5xl mx-auto px-4">
@@ -56,10 +56,11 @@ export const Navbar = () => {
                     className="w-8 h-8 rounded-full object-cover"
                   />
                 )}
-                <span className="text-gray-300">{}</span>
+                <span className="text-gray-300">{displayName}</span>
                 <button
                   onClick={signOut}
-                  className="bg-red-500 px-3 py-1 rounded"
+                  className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded transition-colors duration-200
+"
                 >
                   Sign Out
                 </button>
@@ -67,7 +68,8 @@ export const Navbar = () => {
             ) : (
               <button
                 onClick={signInWithGitHub}
-                className="bg-blue-500 px-3 py-1 rounded"
+                className="bg-[#0ca2c4] hover:bg-[#85acb5] px-3 py-1 rounded transition-colors duration-200
+"
               >
                 Sign in with GitHub
               </button>
