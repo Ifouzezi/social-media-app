@@ -1,12 +1,13 @@
 import { ChangeEvent, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { supabase } from "../supabase-client";
+import { useAuth } from "../context/AuthContext";
 
 // Define the expected structure of the post data
 interface PostInput {
   title: string;
   content: string;
-  // avatar_url: string | null;
+  avatar_url: string | null;
   // community_id?: number | null;
 }
 
@@ -41,6 +42,7 @@ const CreatePost = () => {
   // State for form inputs
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
+  const { user } = useAuth(); // Get user data from Auth context
 
   // State for storing selected file
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -60,7 +62,7 @@ const CreatePost = () => {
       post: {
         title,
         content,
-        // avatar_url: user?.user_metadata.avatar_url || null,
+        avatar_url: user?.user_metadata.avatar_url || null,
         // community_id: communityId,
       },
       imageFile: selectedFile,

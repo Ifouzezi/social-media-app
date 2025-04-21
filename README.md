@@ -12,7 +12,7 @@ A full-stack social media platform built with modern technologies:
 
 ## 🚀 Features
 
-- 🔐 Authentication (Sign up / Sign in / Sign out)
+- 🔐 Authentication (Sign in / Sign out) with Github account only.
 - 📝 Create, edit & delete posts
 - ❤️ Like and comment on posts
 - 👤 User profiles and avatars
