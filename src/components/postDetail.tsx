@@ -54,8 +54,6 @@ const PostDetail = ({ postId }: Props) => {
 
       <LikeButton postId={postId} />
       <CommentSection postId={postId} /> 
-
-    
     </div>
   );
 };
