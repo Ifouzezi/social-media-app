@@ -2,9 +2,11 @@ import { Route, Routes } from "react-router";
 import { Navbar } from "./components/navbar";
 import {
   Home,
-  CreatePostPage
+  CreatePostPage,
+  PostPage,
+  CreateCommunityPage,
+  CommunitiesPage
 } from "./pages";
-import PostPage from "./pages/postPage";
 
 
 function App() {
@@ -16,8 +18,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<CreatePostPage />} />
           <Route path="/post/:id" element={<PostPage />} />
-          {/* <Route path="/community/create" element={<CreateCommunityPage />} /> */}
-          {/* <Route path="/communities" element={<CommunitiesPage />} /> */}
+          <Route path="/community/create" element={<CreateCommunityPage />} />
+          <Route path="/communities" element={<CommunitiesPage />} />
           {/* <Route path="/community/:id" element={<CommunityPage />} /> */}
         </Routes>
       </div>
