@@ -1,14 +1,15 @@
 import { ChangeEvent, useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { supabase } from "../supabase-client";
 import { useAuth } from "../context/AuthContext";
+import { Community, fetchCommunities } from "./communityLIst";
 
 // Define the expected structure of the post data
 interface PostInput {
   title: string;
   content: string;
   avatar_url: string | null;
-  // community_id?: number | null;
+  community_id?: number | null;
 }
 
 // Function to upload image to Supabase and insert the post into the database
@@ -43,6 +44,12 @@ const CreatePost = () => {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const { user } = useAuth(); // Get user data from Auth context
+  const [communityId, setCommunityId] = useState<number | null>(null);
+
+  const { data: communities } = useQuery<Community[], Error>({
+    queryKey: ["communities"],
+    queryFn: fetchCommunities,
+  });
 
   // State for storing selected file
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -63,10 +70,16 @@ const CreatePost = () => {
         title,
         content,
         avatar_url: user?.user_metadata.avatar_url || null,
-        // community_id: communityId,
+        community_id: communityId,
       },
       imageFile: selectedFile,
     });
+  };
+
+  // State for community ID
+  const handleCommunityChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    setCommunityId(value ? Number(value) : null);
   };
 
   // Handle image file selection
@@ -106,6 +119,19 @@ const CreatePost = () => {
             rows={5}
             required
           />
+        </div>
+
+        {/* Community selection dropdown */}
+        <div>
+          <label> Select Community</label>
+          <select id="community" onChange={handleCommunityChange}>
+            <option value={""}> -- Choose a Community -- </option>
+            {communities?.map((community, key) => (
+              <option key={key} value={community.id}>
+                {community.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
